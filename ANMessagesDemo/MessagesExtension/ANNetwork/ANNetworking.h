@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, ANRequestMethod) {
     ANGET  = 1,
     ANPUT  = 2,
     ANHEAD = 3,
+    ANFILE = 4,
 };
 
 /**

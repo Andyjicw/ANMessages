@@ -158,3 +158,22 @@
 }
 
 @end
+
+@implementation GETFILE
+
++ (void)withUrl:(NSString *)url
+        success:(SuccessBlock)success
+        failure:(FailureBlock)failure {
+    [ANNetworking withUrl:url
+                     body:nil
+                     head:nil
+                   method:ANFILE
+                  success:^(id result) {
+                      success(result);
+                  }
+                  failure:^(NSError *error) {
+                      failure(error);
+                  }];
+}
+
+@end

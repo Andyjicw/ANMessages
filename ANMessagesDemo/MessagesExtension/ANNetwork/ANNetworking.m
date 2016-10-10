@@ -68,6 +68,9 @@
                     success([(NSHTTPURLResponse *)response allHeaderFields]);
                     return;
                 }
+            } else if (method == ANFILE) {
+                success(data);
+                return;
             }
             NSError *jsonError;
             NSData *objectData = [newStr dataUsingEncoding:NSUTF8StringEncoding];

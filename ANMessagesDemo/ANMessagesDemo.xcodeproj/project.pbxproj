@@ -417,6 +417,7 @@
 				A14B1EE01DAB3A3A0093B63B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A14B1EE21DAB3A3A0093B63B /* Build configuration list for PBXNativeTarget "ANMessagesDemo" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +426,7 @@
 				A14B1EE41DAB3A3A0093B63B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

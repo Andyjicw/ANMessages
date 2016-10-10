@@ -138,3 +138,18 @@ typedef void(^FailureBlock)(NSError *error);
         failure:(FailureBlock)failure;
 
 @end
+
+@interface GETFILE : ANNetworkMessage
+
+/**
+ *  HEAD请求（不需要修改请求头）
+ *
+ *  @param url     请求地址
+ *  @param success 成功回调
+ *  @param failure 失败回调
+ */
++ (void)withUrl:(NSString *)url
+        success:(SuccessBlock)success
+        failure:(FailureBlock)failure;
+
+@end

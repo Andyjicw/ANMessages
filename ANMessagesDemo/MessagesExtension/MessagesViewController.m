@@ -8,10 +8,15 @@
 //  Copyright © 2016 andy. All rights reserved.
 //
 
+#define TEST_URL @"http://220.231.200.166:8888/getFile.php"
+
 #import "MessagesViewController.h"
+#import "ANNetworkMessage.h"
 
 
 @interface MessagesViewController ()
+
+@property (nonatomic, strong) UIButton *imgBtn;
 
 @end
 
@@ -20,6 +25,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imgBtn = [[UIButton alloc] init];
+    self.imgBtn.frame = CGRectMake(20, 20, 80, 80);
+    self.imgBtn.backgroundColor = [UIColor grayColor];
+    [self.imgBtn addTarget:self action:@selector(xxx) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.imgBtn];
+    [self testGETFILE];
+}
+
+#pragma mark - testGETFILE
+- (void)xxx {
+
+    MSSticker *sticker = [[MSSticker alloc] initWithContentsOfFileURL:[NSURL URLWithString:@"http://220.231.200.166:8888/123.png"]
+                                                 localizedDescription:@"kUTTypePNG"
+                                                                error:nil];
+    [self.activeConversation insertSticker:sticker
+                         completionHandler:^(NSError * _Nullable err) {
+                             //
+                             NSLog(@"err:%@", err);
+                         }];
+    
+//    [self.activeConversation insertText:@"123" completionHandler:^(NSError * _Nullable err) {
+//        //
+//    }];
+}
+- (void)testGETFILE {
+    [GETFILE withUrl:TEST_URL
+             success:^(id result) {
+                 [self.imgBtn setImage:[UIImage imageWithData:result] forState:UIControlStateNormal];
+             }
+             failure:^(NSError *error) {
+                 // failure to do
+             }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,6 +71,7 @@
     // This will happen when the extension is about to present UI.
     
     // Use this method to configure the extension and restore previously stored state.
+    NSLog(@"didBecomeActiveWithConversation");
 }
 
 -(void)willResignActiveWithConversation:(MSConversation *)conversation {
@@ -44,6 +82,7 @@
     // Use this method to release shared resources, save user data, invalidate timers,
     // and store enough state information to restore your extension to its current state
     // in case it is terminated later.
+    NSLog(@"willResignActiveWithConversation");
 }
 
 -(void)didReceiveMessage:(MSMessage *)message conversation:(MSConversation *)conversation {
@@ -51,28 +90,33 @@
     // extension on a remote device.
     
     // Use this method to trigger UI updates in response to the message.
+    NSLog(@"didReceiveMessage");
 }
 
 -(void)didStartSendingMessage:(MSMessage *)message conversation:(MSConversation *)conversation {
     // Called when the user taps the send button.
+    NSLog(@"didStartSendingMessage");
 }
 
 -(void)didCancelSendingMessage:(MSMessage *)message conversation:(MSConversation *)conversation {
     // Called when the user deletes the message without sending it.
     
     // Use this to clean up state related to the deleted message.
+    NSLog(@"didCancelSendingMessage");
 }
 
 -(void)willTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
     // Called before the extension transitions to a new presentation style.
     
     // Use this method to prepare for the change in presentation style.
+    NSLog(@"willTransitionToPresentationStyle");
 }
 
 -(void)didTransitionToPresentationStyle:(MSMessagesAppPresentationStyle)presentationStyle {
     // Called after the extension transitions to a new presentation style.
     
     // Use this method to finalize any behaviors associated with the change in presentation style.
+    NSLog(@"didTransitionToPresentationStyle");
 }
 
 @end
