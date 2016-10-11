@@ -16,7 +16,7 @@
 
 @interface MessagesViewController ()
 
-@property (nonatomic, strong) UIButton *imgBtn;
+@property (nonatomic, strong) UIImageView *image;
 
 @end
 
@@ -25,20 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.imgBtn = [[UIButton alloc] init];
-    self.imgBtn.frame = CGRectMake(20, 20, 80, 80);
-    self.imgBtn.backgroundColor = [UIColor grayColor];
-    [self.imgBtn addTarget:self action:@selector(xxx) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.imgBtn];
-    [self testGETFILE];
+    self.image = [[UIImageView alloc] init];
+    self.image.frame = CGRectMake(20, 20, 80, 80);
+    self.image.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:self.image];
+    [self getData];
 }
 
-#pragma mark - testGETFILE
-- (void)xxx {
 
-    MSSticker *sticker = [[MSSticker alloc] initWithContentsOfFileURL:[NSURL URLWithString:@"http://220.231.200.166:8888/123.png"]
-                                                 localizedDescription:@"kUTTypePNG"
-                                                                error:nil];
+- (void)action {
+
+//    MSSticker *sticker = [[MSSticker alloc] initWithContentsOfFileURL:[NSURL URLWithString:@"http://220.231.200.166:8888/123.png"]
+//                                                 localizedDescription:@"kUTTypePNG"
+//                                                                error:nil];
 //    [self.activeConversation insertSticker:sticker
 //                         completionHandler:^(NSError * _Nullable err) {
 //                             //
@@ -49,10 +48,13 @@
         //
     }];
 }
-- (void)testGETFILE {
+
+#pragma mark - getData
+
+- (void)getData {
     [GETFILE withUrl:TEST_URL
              success:^(id result) {
-                 [self.imgBtn setImage:[UIImage imageWithData:result] forState:UIControlStateNormal];
+                 self.image.image = [UIImage imageWithData:result];
              }
              failure:^(NSError *error) {
                  // failure to do
