@@ -39,15 +39,15 @@
     MSSticker *sticker = [[MSSticker alloc] initWithContentsOfFileURL:[NSURL URLWithString:@"http://220.231.200.166:8888/123.png"]
                                                  localizedDescription:@"kUTTypePNG"
                                                                 error:nil];
-    [self.activeConversation insertSticker:sticker
-                         completionHandler:^(NSError * _Nullable err) {
-                             //
-                             NSLog(@"err:%@", err);
-                         }];
+//    [self.activeConversation insertSticker:sticker
+//                         completionHandler:^(NSError * _Nullable err) {
+//                             //
+//                             NSLog(@"err:%@", err);
+//                         }];
     
-//    [self.activeConversation insertText:@"123" completionHandler:^(NSError * _Nullable err) {
-//        //
-//    }];
+    [self.activeConversation insertText:@"123" completionHandler:^(NSError * _Nullable err) {
+        //
+    }];
 }
 - (void)testGETFILE {
     [GETFILE withUrl:TEST_URL
